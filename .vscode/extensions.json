@@ -1,0 +1,33 @@
+{
+  "recommendations": [
+    // GitHub Copilot Extensions
+    "github.copilot",
+    "github.copilot-chat",
+    
+    // Essential Development Extensions
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-eslint",
+    
+    // React/Next.js Extensions
+    "dsznajder.es7-react-js-snippets",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.path-intellisense",
+    
+    // Additional Helpful Extensions
+    "ms-vscode.vscode-json",
+    "redhat.vscode-yaml",
+    "ms-vscode.vscode-markdown",
+    "streetsidesoftware.code-spell-checker",
+    
+    // Git Extensions
+    "eamodio.gitlens",
+    
+    // Firebase Extensions (since you're using Firebase)
+    "toba.vsfire"
+  ],
+  "unwantedRecommendations": [
+    "ms-vscode.vscode-typescript"
+  ]
+}
