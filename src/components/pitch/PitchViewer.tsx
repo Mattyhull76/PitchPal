@@ -12,7 +12,6 @@ import {
   Download,
   Share2,
   Edit,
-  Presentation,
 } from 'lucide-react';
 import { exportToPDF, generateShareableLink } from '@/lib/export';
 import { toast } from 'sonner';

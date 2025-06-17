@@ -1,6 +1,15 @@
 import OpenAI from 'openai';
-import { StartupIdea, PitchSlide, SlideType, InvestorPersona } from '@/types/pitch';
-import { generateDemoPitchDeck, generateDemoExecutiveSummary, isDemoMode } from './demo';
+import {
+  StartupIdea,
+  PitchSlide,
+  SlideType,
+  InvestorPersona,
+} from '@/types/pitch';
+import {
+  generateDemoPitchDeck,
+  generateDemoExecutiveSummary,
+  isDemoMode,
+} from './demo';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -27,7 +36,7 @@ export async function generatePitchDeck(
     'competitive-advantage',
     'team',
     'financials',
-    'ask'
+    'ask',
   ];
 
   for (let i = 0; i < slideTypes.length; i++) {
@@ -51,19 +60,20 @@ async function generateSlide(
   investorPersona?: InvestorPersona
 ): Promise<{ title: string; content: string }> {
   const prompt = createSlidePrompt(idea, slideType, investorPersona);
-  
+
   try {
     const response = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
       messages: [
         {
           role: 'system',
-          content: 'You are an expert startup pitch consultant. Create compelling, investor-ready slide content that is concise, impactful, and tailored to the specific audience.'
+          content:
+            'You are an expert startup pitch consultant. Create compelling, investor-ready slide content that is concise, impactful, and tailored to the specific audience.',
         },
         {
           role: 'user',
-          content: prompt
-        }
+          content: prompt,
+        },
       ],
       max_tokens: 500,
       temperature: 0.7,
@@ -71,18 +81,20 @@ async function generateSlide(
 
     const content = response.choices[0]?.message?.content || '';
     const lines = content.split('\n').filter(line => line.trim());
-    const title = lines[0]?.replace(/^#+\s*/, '') || getDefaultSlideTitle(slideType);
+    const title =
+      lines[0]?.replace(/^#+\s*/, '') || getDefaultSlideTitle(slideType);
     const slideContent = lines.slice(1).join('\n').trim();
 
     return {
       title,
-      content: slideContent
+      content: slideContent,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error generating slide:', error);
 
     // If quota exceeded or other API error, fall back to demo mode
-    if (error?.status === 429 || error?.code === 'insufficient_quota') {
+    const errorObj = error as { status?: number; code?: string };
+    if (errorObj?.status === 429 || errorObj?.code === 'insufficient_quota') {
       console.log('OpenAI quota exceeded, falling back to demo mode');
       const demoSlides = generateDemoPitchDeck(idea);
       const demoSlide = demoSlides.find(slide => slide.type === slideType);
@@ -96,7 +108,7 @@ async function generateSlide(
 
     return {
       title: getDefaultSlideTitle(slideType),
-      content: 'Content generation failed. Please try again.'
+      content: 'Content generation failed. Please try again.',
     };
   }
 }
@@ -118,11 +130,17 @@ ${idea.marketSize ? `Market Size: ${idea.marketSize}` : ''}
 ${idea.teamOverview ? `Team: ${idea.teamOverview}` : ''}
 `;
 
-  const investorContext = investorPersona ? `
+  const investorContext = investorPersona
+    ? `
 Investor Type: ${investorPersona.type}
 Region: ${investorPersona.region}
-${investorPersona.focusAreas ? `Focus Areas: ${investorPersona.focusAreas.join(', ')}` : ''}
-` : '';
+${
+  investorPersona.focusAreas
+    ? `Focus Areas: ${investorPersona.focusAreas.join(', ')}`
+    : ''
+}
+`
+    : '';
 
   const slidePrompts = {
     title: `Create a compelling title slide with:
@@ -182,7 +200,7 @@ ${investorPersona.focusAreas ? `Focus Areas: ${investorPersona.focusAreas.join('
 - States funding amount needed
 - Explains use of funds breakdown
 - Shows expected milestones
-- Highlights investor benefits and returns`
+- Highlights investor benefits and returns`,
   };
 
   return `${baseContext}${investorContext}
@@ -205,12 +223,14 @@ function getDefaultSlideTitle(slideType: SlideType): string {
     'competitive-advantage': 'Competitive Advantage',
     team: 'Our Team',
     financials: 'Financial Projections',
-    ask: 'The Ask'
+    ask: 'The Ask',
   };
   return titles[slideType];
 }
 
-export async function generateExecutiveSummary(idea: StartupIdea): Promise<string> {
+export async function generateExecutiveSummary(
+  idea: StartupIdea
+): Promise<string> {
   // Use demo mode if API key is not configured
   if (isDemoMode()) {
     console.log('Using demo mode for executive summary generation');
@@ -249,24 +269,31 @@ Format it professionally for investors, incubators, and grant applications.
       messages: [
         {
           role: 'system',
-          content: 'You are an expert business consultant specializing in executive summaries for startups. Create professional, compelling summaries that capture investor attention.'
+          content:
+            'You are an expert business consultant specializing in executive summaries for startups. Create professional, compelling summaries that capture investor attention.',
         },
         {
           role: 'user',
-          content: prompt
-        }
+          content: prompt,
+        },
       ],
       max_tokens: 1000,
       temperature: 0.7,
     });
 
-    return response.choices[0]?.message?.content || 'Executive summary generation failed. Please try again.';
-  } catch (error: any) {
+    return (
+      response.choices[0]?.message?.content ||
+      'Executive summary generation failed. Please try again.'
+    );
+  } catch (error: unknown) {
     console.error('Error generating executive summary:', error);
 
     // If quota exceeded or other API error, fall back to demo mode
-    if (error?.status === 429 || error?.code === 'insufficient_quota') {
-      console.log('OpenAI quota exceeded, falling back to demo mode for executive summary');
+    const errorObj = error as { status?: number; code?: string };
+    if (errorObj?.status === 429 || errorObj?.code === 'insufficient_quota') {
+      console.log(
+        'OpenAI quota exceeded, falling back to demo mode for executive summary'
+      );
       return generateDemoExecutiveSummary(idea);
     }
 

@@ -5,9 +5,14 @@
 export class ApiError extends Error {
   public statusCode: number;
   public code: string;
-  public details?: any;
+  public details?: unknown;
 
-  constructor(message: string, statusCode: number = 500, code?: string, details?: any) {
+  constructor(
+    message: string,
+    statusCode: number = 500,
+    code?: string,
+    details?: unknown
+  ) {
     super(message);
     this.name = 'ApiError';
     this.statusCode = statusCode;
@@ -17,7 +22,7 @@ export class ApiError extends Error {
 }
 
 export class ValidationError extends ApiError {
-  constructor(message: string, details?: any) {
+  constructor(message: string, details?: unknown) {
     super(message, 400, 'VALIDATION_ERROR', details);
     this.name = 'ValidationError';
   }
@@ -60,7 +65,11 @@ export class RateLimitError extends ApiError {
 
 export class ExternalServiceError extends ApiError {
   constructor(service: string, message?: string) {
-    super(message || `${service} service unavailable`, 503, 'EXTERNAL_SERVICE_ERROR');
+    super(
+      message || `${service} service unavailable`,
+      503,
+      'EXTERNAL_SERVICE_ERROR'
+    );
     this.name = 'ExternalServiceError';
   }
 }
@@ -100,7 +109,10 @@ export function handleApiError(error: unknown): Response {
     }
 
     // OpenAI errors
-    if (error.message.includes('quota') || error.message.includes('rate limit')) {
+    if (
+      error.message.includes('quota') ||
+      error.message.includes('rate limit')
+    ) {
       return Response.json(
         {
           success: false,
@@ -113,7 +125,10 @@ export function handleApiError(error: unknown): Response {
     }
 
     // Network errors
-    if (error.message.includes('ECONNREFUSED') || error.message.includes('timeout')) {
+    if (
+      error.message.includes('ECONNREFUSED') ||
+      error.message.includes('timeout')
+    ) {
       return Response.json(
         {
           success: false,
@@ -141,7 +156,7 @@ export function handleApiError(error: unknown): Response {
 /**
  * Async error wrapper for API routes
  */
-export function withErrorHandling<T extends any[], R>(
+export function withErrorHandling<T extends unknown[], R>(
   handler: (...args: T) => Promise<R>
 ) {
   return async (...args: T): Promise<R | Response> => {
@@ -163,7 +178,8 @@ export const validators = {
   },
 
   uuid: (id: string): boolean => {
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+    const uuidRegex =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
     return uuidRegex.test(id);
   },
 
@@ -181,12 +197,32 @@ export const validators = {
   },
 
   industry: (industry: string): boolean => {
-    const validIndustries = ['B2B', 'B2C', 'SaaS', 'E-commerce', 'FinTech', 'HealthTech', 'EdTech', 'Other'];
+    const validIndustries = [
+      'B2B',
+      'B2C',
+      'SaaS',
+      'E-commerce',
+      'FinTech',
+      'HealthTech',
+      'EdTech',
+      'Other',
+    ];
     return validIndustries.includes(industry);
   },
 
   slideType: (type: string): boolean => {
-    const validTypes = ['title', 'problem', 'solution', 'market', 'business-model', 'go-to-market', 'competitive-advantage', 'team', 'financials', 'ask'];
+    const validTypes = [
+      'title',
+      'problem',
+      'solution',
+      'market',
+      'business-model',
+      'go-to-market',
+      'competitive-advantage',
+      'team',
+      'financials',
+      'ask',
+    ];
     return validTypes.includes(type);
   },
 
@@ -208,15 +244,15 @@ export const validators = {
     return typeof str === 'string' && str.length <= max;
   },
 
-  isPositiveNumber: (num: any): boolean => {
+  isPositiveNumber: (num: unknown): boolean => {
     return typeof num === 'number' && num > 0;
   },
 
-  isArray: (arr: any): boolean => {
+  isArray: (arr: unknown): boolean => {
     return Array.isArray(arr);
   },
 
-  isObject: (obj: any): boolean => {
+  isObject: (obj: unknown): boolean => {
     return obj !== null && typeof obj === 'object' && !Array.isArray(obj);
   },
 };
@@ -226,15 +262,33 @@ export const validators = {
  */
 export const validationSchemas = {
   startupIdea: {
-    required: ['startupName', 'problemStatement', 'targetAudience', 'solution', 'monetizationPlan', 'competitors', 'industry'],
+    required: [
+      'startupName',
+      'problemStatement',
+      'targetAudience',
+      'solution',
+      'monetizationPlan',
+      'competitors',
+      'industry',
+    ],
     optional: ['marketSize', 'teamOverview'],
     validators: {
-      startupName: (name: string) => validators.minLength(name, 1) && validators.maxLength(name, 100),
-      problemStatement: (statement: string) => validators.minLength(statement, 10) && validators.maxLength(statement, 2000),
-      targetAudience: (audience: string) => validators.minLength(audience, 5) && validators.maxLength(audience, 1000),
-      solution: (solution: string) => validators.minLength(solution, 10) && validators.maxLength(solution, 2000),
-      monetizationPlan: (plan: string) => validators.minLength(plan, 10) && validators.maxLength(plan, 1000),
-      competitors: (competitors: string) => validators.minLength(competitors, 5) && validators.maxLength(competitors, 1000),
+      startupName: (name: string) =>
+        validators.minLength(name, 1) && validators.maxLength(name, 100),
+      problemStatement: (statement: string) =>
+        validators.minLength(statement, 10) &&
+        validators.maxLength(statement, 2000),
+      targetAudience: (audience: string) =>
+        validators.minLength(audience, 5) &&
+        validators.maxLength(audience, 1000),
+      solution: (solution: string) =>
+        validators.minLength(solution, 10) &&
+        validators.maxLength(solution, 2000),
+      monetizationPlan: (plan: string) =>
+        validators.minLength(plan, 10) && validators.maxLength(plan, 1000),
+      competitors: (competitors: string) =>
+        validators.minLength(competitors, 5) &&
+        validators.maxLength(competitors, 1000),
       industry: validators.industry,
       marketSize: (size: string) => !size || validators.maxLength(size, 1000),
       teamOverview: (team: string) => !team || validators.maxLength(team, 1000),
@@ -245,8 +299,10 @@ export const validationSchemas = {
     required: ['title', 'slides'],
     optional: ['investorPersona', 'status', 'shareableLink'],
     validators: {
-      title: (title: string) => validators.minLength(title, 1) && validators.maxLength(title, 200),
-      slides: (slides: any[]) => validators.isArray(slides) && slides.length > 0,
+      title: (title: string) =>
+        validators.minLength(title, 1) && validators.maxLength(title, 200),
+      slides: (slides: any[]) =>
+        validators.isArray(slides) && slides.length > 0,
       status: validators.status,
       shareableLink: (link: string) => !link || validators.url(link),
     },
@@ -257,7 +313,8 @@ export const validationSchemas = {
     optional: ['subscription', 'pitchCount'],
     validators: {
       email: validators.email,
-      displayName: (name: string) => validators.minLength(name, 1) && validators.maxLength(name, 100),
+      displayName: (name: string) =>
+        validators.minLength(name, 1) && validators.maxLength(name, 100),
       subscription: validators.subscription,
       pitchCount: validators.isPositiveNumber,
     },

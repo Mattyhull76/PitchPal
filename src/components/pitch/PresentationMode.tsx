@@ -66,7 +66,7 @@ export function PresentationMode({
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
-  }, [isOpen, currentSlide]);
+  }, [isOpen, currentSlide, nextSlide, prevSlide, onClose]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -86,7 +86,7 @@ export function PresentationMode({
       timeout = setTimeout(() => setShowControls(false), 3000);
     }
     return () => clearTimeout(timeout);
-  }, [isOpen, currentSlide]);
+  }, [isOpen, currentSlide, nextSlide, prevSlide, onClose]);
 
   const nextSlide = () => {
     if (currentSlide < pitchDeck.slides.length - 1) {
