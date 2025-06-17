@@ -1,0 +1,12 @@
+specVersion: "v1"
+serviceId: "Damaktg"
+location: "australia-southeast1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "damaktg-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

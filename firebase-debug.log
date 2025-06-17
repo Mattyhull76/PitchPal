@@ -1,0 +1,87 @@
+[debug] [2025-06-17T02:25:45.486Z] ----------------------------------------------------------------------
+[debug] [2025-06-17T02:25:45.489Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\matty\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-06-17T02:25:45.490Z] CLI Version:   14.7.0
+[debug] [2025-06-17T02:25:45.490Z] Platform:      win32
+[debug] [2025-06-17T02:25:45.490Z] Node Version:  v22.16.0
+[debug] [2025-06-17T02:25:45.491Z] Time:          Tue Jun 17 2025 12:25:45 GMT+1000 (Australian Eastern Standard Time)
+[debug] [2025-06-17T02:25:45.491Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-06-17T02:25:45.698Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-17T02:25:45.699Z] > authorizing via signed-in user (damaktg@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\matty\Documents\augment-projects\PitchPal
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-06-17T02:26:09.281Z] Using project from CLI flag: pitchpal-62be6
+[debug] [2025-06-17T02:26:09.282Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:09.282Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:09.283Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/pitchpal-62be6 [none]
+[debug] [2025-06-17T02:26:09.835Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/pitchpal-62be6 200
+[debug] [2025-06-17T02:26:09.836Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/pitchpal-62be6 {"projectId":"pitchpal-62be6","projectNumber":"269472958398","displayName":"PitchPal","name":"projects/pitchpal-62be6","resources":{"hostingSite":"pitchpal-62be6"},"state":"ACTIVE","etag":"1_630e7572-36b9-41ed-8d1c-e14bb1014e23"}
+[info] i  Using project pitchpal-62be6 (PitchPal) 
+[info] 
+=== Dataconnect Setup
+[debug] [2025-06-17T02:26:09.850Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:09.850Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:09.850Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/pitchpal-62be6/billingInfo [none]
+[debug] [2025-06-17T02:26:11.301Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/pitchpal-62be6/billingInfo 200
+[debug] [2025-06-17T02:26:11.301Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/pitchpal-62be6/billingInfo {"name":"projects/pitchpal-62be6/billingInfo","projectId":"pitchpal-62be6","billingAccountName":"billingAccounts/01A93D-D21D2F-6FCEF0","billingEnabled":true}
+[info] i  dataconnect: ensuring required API firebasedataconnect.googleapis.com is enabled... 
+[debug] [2025-06-17T02:26:11.302Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:11.302Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:11.302Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/firebasedataconnect.googleapis.com [none]
+[debug] [2025-06-17T02:26:11.302Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/firebasedataconnect.googleapis.com x-goog-quota-user=projects/pitchpal-62be6
+[debug] [2025-06-17T02:26:12.684Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/firebasedataconnect.googleapis.com 200
+[debug] [2025-06-17T02:26:12.684Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/firebasedataconnect.googleapis.com [omitted]
+[info] +  dataconnect: required API firebasedataconnect.googleapis.com is enabled 
+[info] i  dataconnect: ensuring required API sqladmin.googleapis.com is enabled... 
+[debug] [2025-06-17T02:26:12.685Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:12.685Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:12.685Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/sqladmin.googleapis.com [none]
+[debug] [2025-06-17T02:26:12.685Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/sqladmin.googleapis.com x-goog-quota-user=projects/pitchpal-62be6
+[debug] [2025-06-17T02:26:12.992Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/sqladmin.googleapis.com 200
+[debug] [2025-06-17T02:26:12.992Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/sqladmin.googleapis.com [omitted]
+[info] +  dataconnect: required API sqladmin.googleapis.com is enabled 
+[info] i  dataconnect: ensuring required API compute.googleapis.com is enabled... 
+[debug] [2025-06-17T02:26:12.994Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:12.994Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:12.994Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/compute.googleapis.com [none]
+[debug] [2025-06-17T02:26:12.994Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/compute.googleapis.com x-goog-quota-user=projects/pitchpal-62be6
+[debug] [2025-06-17T02:26:14.287Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/compute.googleapis.com 200
+[debug] [2025-06-17T02:26:14.287Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/pitchpal-62be6/services/compute.googleapis.com [omitted]
+[info] +  dataconnect: required API compute.googleapis.com is enabled 
+[debug] [2025-06-17T02:26:14.288Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:14.288Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:14.288Z] >>> [apiv2][query] GET https://firebasedataconnect.googleapis.com/v1/projects/pitchpal-62be6/locations/-/services [none]
+[debug] [2025-06-17T02:26:15.854Z] <<< [apiv2][status] GET https://firebasedataconnect.googleapis.com/v1/projects/pitchpal-62be6/locations/-/services 200
+[debug] [2025-06-17T02:26:15.854Z] <<< [apiv2][body] GET https://firebasedataconnect.googleapis.com/v1/projects/pitchpal-62be6/locations/-/services {}
+[debug] [2025-06-17T02:26:25.788Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:25.789Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:25.789Z] >>> [apiv2][query] GET https://sqladmin.googleapis.com/v1/projects/pitchpal-62be6/instances [none]
+[debug] [2025-06-17T02:26:26.287Z] <<< [apiv2][status] GET https://sqladmin.googleapis.com/v1/projects/pitchpal-62be6/instances 200
+[debug] [2025-06-17T02:26:26.287Z] <<< [apiv2][body] GET https://sqladmin.googleapis.com/v1/projects/pitchpal-62be6/instances {"items":[{"kind":"sql#instance","state":"PENDING_CREATE","databaseVersion":"POSTGRES_15","settings":{"authorizedGaeApplications":[],"tier":"db-f1-micro","kind":"sql#settings","userLabels":{"firebase-data-connect":"ft"},"availabilityType":"ZONAL","pricingPlan":"PER_USE","replicationType":"SYNCHRONOUS","activationPolicy":"ALWAYS","ipConfiguration":{"authorizedNetworks":[],"sslMode":"ALLOW_UNENCRYPTED_AND_ENCRYPTED","ipv4Enabled":true,"requireSsl":false,"serverCaMode":"GOOGLE_MANAGED_INTERNAL_CA"},"locationPreference":{"zone":"australia-southeast1-b","kind":"sql#locationPreference"},"databaseFlags":[{"name":"cloudsql.iam_authentication","value":"on"}],"dataDiskType":"PD_SSD","backupConfiguration":{"startTime":"11:00","kind":"sql#backupConfiguration","backupRetentionSettings":{"retentionUnit":"COUNT","retainedBackups":7},"enabled":false,"transactionLogRetentionDays":7,"transactionalLogStorageState":"TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED","backupTier":"STANDARD"},"insightsConfig":{"queryInsightsEnabled":true,"queryStringLength":1024,"queryPlansPerMinute":5},"edition":"ENTERPRISE","connectorEnforcement":"NOT_REQUIRED","settingsVersion":"0","storageAutoResizeLimit":"0","storageAutoResize":false,"dataDiskSizeGb":"10","deletionProtectionEnabled":false,"replicationLagMaxSeconds":31536000,"enableGoogleMlIntegration":false},"etag":"09d7630f9649739eeeec952e09b273ff0a38991da26d20e237493aa9e36c27ec","ipAddresses":[{"type":"PRIMARY","ipAddress":"34.40.187.207"},{"type":"OUTGOING","ipAddress":"34.87.206.12"}],"serverCaCert":{"kind":"sql#sslCert","certSerialNumber":"0","cert":"-----BEGIN CERTIFICATE-----\nMIIDfzCCAmegAwIBAgIBADANBgkqhkiG9w0BAQsFADB3MS0wKwYDVQQuEyRmYTU5\nYWQxMi02YmRjLTRmOGUtODQ1ZC0xZjlkZGRkZTMzZmExIzAhBgNVBAMTGkdvb2ds\nZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUsIEluYzELMAkG\nA1UEBhMCVVMwHhcNMjUwNjE3MDIyMDM4WhcNMzUwNjE1MDIyMTM4WjB3MS0wKwYD\nVQQuEyRmYTU5YWQxMi02YmRjLTRmOGUtODQ1ZC0xZjlkZGRkZTMzZmExIzAhBgNV\nBAMTGkdvb2dsZSBDbG91ZCBTUUwgU2VydmVyIENBMRQwEgYDVQQKEwtHb29nbGUs\nIEluYzELMAkGA1UEBhMCVVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\nAQCaHRfzZGK1BKskSXgH3UdQloOCZaHCQISF7/R5KzmQ9KCCXh0gjf/4+cay4cX9\n2Db6tQkF+O51dMn+ByNOGnEfrUbS74CjH0nKmoCA++4uKmxGtAWaj21AXtoCeWCQ\nqJ/8LJS6ISVXw8koleCXlAsJSnN9FMUZN/4cjoNmhdRmwxWRhCdfLVod9fssnPn7\nRKxAnIoD3G1RKvECFi1StMW/TLpOib6+vVdApny1ZiKMs6l1cvSUEZLibS6FQNyQ\nUocKqDGTKQV8vkUu+/I4Lb5TfQJm/k2ENZsPxPNWQEn87/cRvqlx2xyr2ozf7Ht0\n+Ngi5v3gjeKRiaabRfl6KSjdAgMBAAGjFjAUMBIGA1UdEwEB/wQIMAYBAf8CAQAw\nDQYJKoZIhvcNAQELBQADggEBAHiO8/suvaYIIzQXbdjGfbobjx9tZtEOj1bWeoIG\ndkYR+IuDkGf56jcZHnmzaFJLiDATjY41YlW9BVnD26dQr5LmSmDkL7IYCpmGwpal\naIQYdPgmMatMbhve1otTIiy8IEdKZPp3jj6LYvKH19io4WuF9brksQambwvzXMua\nmY6Jb8N70+XkcjGIx7ok+6u6SOKQbptrvRnsOdDCkQqX+KMgZVO327ZKrOICVg1T\nfGE9sMFBXPXGwfHDCN+fHP0EU+4hRFaiG3pZfzAUDqQYrpaGW2aMtGX3zYJis/l3\nLu1XxsX09uY6Q65macB6q169A7gKsZhDdzgvY9gZV83p8ks=\n-----END CERTIFICATE-----","commonName":"C=US,O=Google\\, Inc,CN=Google Cloud SQL Server CA,dnQualifier=fa59ad12-6bdc-4f8e-845d-1f9dddde33fa","sha1Fingerprint":"1f06e2194082c46c6b65799f1f8cb609f2da70fc","instance":"damaktg-fdc","createTime":"2025-06-17T02:20:38.478Z","expirationTime":"2035-06-15T02:21:38.478Z"},"instanceType":"CLOUD_SQL_INSTANCE","project":"pitchpal-62be6","serviceAccountEmailAddress":"p269472958398-lfp83l@gcp-sa-cloud-sql.iam.gserviceaccount.com","backendType":"SECOND_GEN","selfLink":"https://sqladmin.googleapis.com/v1/projects/pitchpal-62be6/instances/damaktg-fdc","connectionName":"pitchpal-62be6:australia-southeast1:damaktg-fdc","name":"damaktg-fdc","region":"australia-southeast1","gceZone":"australia-southeast1-b","databaseInstalledVersion":"POSTGRES_15_13","maintenanceVersion":"POSTGRES_15_13.R20250302.00_31","pitrFields":{"transactionLogRetentionDays":7},"createTime":"2025-06-17T02:19:22.305Z","sqlNetworkArchitecture":"NEW_NETWORK_ARCHITECTURE","satisfiesPzi":false,"includeReplicasForMajorVersionUpgrade":false}]}
+[info] i  dataconnect: Checking Cloud SQL no cost trial eligibility... 
+[debug] [2025-06-17T02:26:26.289Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:26.289Z] Checked if tokens are valid: true, expires at: 1750130204707
+[debug] [2025-06-17T02:26:26.289Z] >>> [apiv2][query] GET https://monitoring.googleapis.com/v3/projects/pitchpal-62be6/timeSeries/ filter=metric.type%3D%22serviceruntime.googleapis.com%2Fquota%2Fallocation%2Fusage%22+AND+metric.label.quota_metric+%3D+%22sqladmin.googleapis.com%2Ffdc_lifetime_free_trial_per_project%22&interval.endTime=2025-06-17T02%3A26%3A26.288Z&interval.startTime=2025-06-10T02%3A26%3A26.288Z
+[debug] [2025-06-17T02:26:27.404Z] <<< [apiv2][status] GET https://monitoring.googleapis.com/v3/projects/pitchpal-62be6/timeSeries/ 200
+[debug] [2025-06-17T02:26:27.404Z] <<< [apiv2][body] GET https://monitoring.googleapis.com/v3/projects/pitchpal-62be6/timeSeries/ {"timeSeries":[{"metric":{"labels":{"quota_metric":"sqladmin.googleapis.com/fdc_lifetime_free_trial_per_project"},"type":"serviceruntime.googleapis.com/quota/allocation/usage"},"resource":{"type":"consumer_quota","labels":{"project_id":"pitchpal-62be6","location":"global","service":"sqladmin.googleapis.com"}},"metricKind":"GAUGE","valueType":"INT64","points":[{"interval":{"startTime":"2025-06-17T02:19:25Z","endTime":"2025-06-17T02:19:25Z"},"value":{"int64Value":"1"}}]}],"unit":"1"}
+[warn] !  dataconnect: CloudSQL no cost trial has already been used on this project. 
